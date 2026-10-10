@@ -15,7 +15,7 @@ module.exports = function withBrainbightAccessibility(config) {
         'android:description': '@string/brainbight_accessibility_description',
         'android:permission': 'android.permission.BIND_ACCESSIBILITY_SERVICE',
         'android:exported': 'true',
-      }, 'intent-filter': [{ action: [{ $: { 'android:name': 'android.accessibilityservice.AccessibilityService' } }] }], meta-data: [{ $: {
+      }, 'intent-filter': [{ action: [{ $: { 'android:name': 'android.accessibilityservice.AccessibilityService' } }] }], 'meta-data': [{ $: {
         'android:name': 'android.accessibilityservice',
         'android:resource': '@xml/brainbight_accessibility_service',
       } }] });
