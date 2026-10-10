@@ -1,0 +1,1 @@
+interface Window { webkitSpeechRecognition: (new () => { continuous: boolean; lang: string; onresult: (e: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void; start(): void }) | undefined; }

@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: brainbight
+      POSTGRES_USER: brainbight
+      POSTGRES_PASSWORD: brainbight
+    ports:
+      - "5432:5432"
+    volumes:
+      - brainbight_pgdata:/var/lib/postgresql/data
+      - ./backend/sql/schema.sql:/docker-entrypoint-initdb.d/001-schema.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U brainbight -d brainbight"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  brainbight_pgdata:

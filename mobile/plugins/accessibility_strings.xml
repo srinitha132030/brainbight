@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="brainbight_accessibility_description">Let Brainbight perform system Back and scroll actions when you make swipe gestures while its accessibility service is enabled.</string>
+</resources>

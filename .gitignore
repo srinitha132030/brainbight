@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.expo/
+.env
+.env.*
+!.env.example
+dist/
+build/
+coverage/
+__pycache__/
+.venv/
+*.py[cod]
+.DS_Store
