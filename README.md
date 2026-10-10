@@ -1,13 +1,12 @@
 # Brainbight
 
-An accessibility-first voice and gesture control project, set up as four independent workspaces: `web` (Next.js product site), `admin` (Next.js operator dashboard), `mobile` (Expo / React Native Android companion), and `backend` (Express API and Python gesture service). PostgreSQL runs locally with Docker Compose; OAuth login uses Auth0.
+An accessibility-first voice and gesture control project, set up as four independent workspaces: `web` (Next.js product site), `admin` (Next.js local development dashboard), `mobile` (Expo / React Native Android companion), and `backend` (Express API and Python gesture service). PostgreSQL runs locally with Docker Compose. The web and admin workspaces run without accounts or sign-in.
 
 ## Prerequisites
 
 - Node.js 20 or later and npm 10 or later.
 - Docker Desktop for PostgreSQL, or an existing PostgreSQL instance.
 - For mobile: Expo Go on an Android phone, or Android Studio and the Android SDK.
-- A configured Auth0 application for real OAuth login. Demo mode runs without credentials.
 
 ## Start the workspace
 
@@ -20,7 +19,7 @@ npm run dev
 
 Open `http://localhost:3000`. Other workspaces run independently: `npm run dev:admin` (port 3001), `npm run dev:backend` (port 4000), and `npm run dev:mobile`. The Python vision service runs from `backend/gesture_service` with `python -m venv .venv`, then activate the environment, run `pip install -r requirements.txt`, and `uvicorn app:app --reload --port 8000`.
 
-Copy `.env.example` to `.env`. In your Auth0 application, set the domain, client ID, client secret, and API audience, and allow `http://localhost:3000/auth/callback` and `http://localhost:3001/auth/callback` as callback URLs. Allow both local origins for web origins and logout URLs. Generate `AUTH0_SECRET` with `openssl rand -hex 32`. The web and admin apps use Auth0 Universal Login; the admin only grants access when the ID token contains the verified `https://brainbight.app/roles` claim with `admin`. See `backend/README.md` for the Action setup. Without Auth0 credentials, the public web and read-only admin demo remain available.
+Copy `.env.example` to `.env` for local database and API settings. No identity provider or callback URLs are required. The API uses a shared local demo profile without sign-in; do not expose this unauthenticated development setup to the public internet or use it for private data.
 
 ## Android accessibility
 
@@ -40,4 +39,4 @@ web/                          Next.js public site and interactive browser demo
 docker-compose.yml            Local PostgreSQL
 ```
 
-Read `backend/README.md` and `mobile/README.md` for workspace-specific details. Configure Auth0 and PostgreSQL credentials before deploying; the included Compose database password is for local development only.
+Read `backend/README.md` and `mobile/README.md` for workspace-specific details. The included Compose database password and unauthenticated API are for local development only; add appropriate access controls before deployment.
